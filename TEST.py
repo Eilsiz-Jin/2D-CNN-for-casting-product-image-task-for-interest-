@@ -217,6 +217,7 @@ for epoch in range(num_epochs):
 # 训练结束后（无论是否 early stop），把“整体最优”也存一份
 if best_state is not None:
     model.load_state_dict(best_state)
-    best_path = os.path.abspath("myCNN_best.pth")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    best_path = os.path.join(script_dir, "myCNN_best.pth")
     torch.save(model.state_dict(), best_path)
     print(f"Best overall model saved to: {best_path}, acc={best_acc:.4f}, loss={best_loss:.6f}")
